@@ -7,6 +7,7 @@ import com.core.SuccessDataResult;
 import com.core.SuccessResult;
 import com.dataAccess.abstracts.ProductDao;
 import com.entities.concretes.Product;
+import com.entities.dtos.ProductWithCategoryDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -38,7 +39,7 @@ public class ProductManager implements ProductService {
 
     @Override
     public DataResult<List<Product>> getAllSorted() {
-        Sort sort = Sort.by(Sort.Direction.ASC,"productName");
+        Sort sort = Sort.by(Sort.Direction.ASC, "productName");
         return new SuccessDataResult<List<Product>>(productDao.findAll(sort), "Successful");
     }
 
@@ -94,5 +95,10 @@ public class ProductManager implements ProductService {
     public DataResult<List<Product>> getByNameAndCategory(String productName, int categoryId) {
         return new SuccessDataResult<List<Product>>
                 (productDao.getByNameAndCategory(productName, categoryId), "Data Listed");
+    }
+
+    @Override
+    public DataResult<List<ProductWithCategoryDto>> getProductsWithCategoryDetails() {
+        return new SuccessDataResult<List<ProductWithCategoryDto>>(productDao.getProductsWithCategoryDetails(), "Data Listed");
     }
 }

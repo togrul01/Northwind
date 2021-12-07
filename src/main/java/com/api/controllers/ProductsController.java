@@ -4,6 +4,7 @@ import com.business.abstracts.ProductService;
 import com.core.DataResult;
 import com.core.Result;
 import com.entities.concretes.Product;
+import com.entities.dtos.ProductWithCategoryDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -74,6 +75,16 @@ public class ProductsController {
     @GetMapping("/getAllSorted")
     public DataResult<List<Product>> getAllSorted() {
         return productService.getAllSorted();
+    }
+
+    @GetMapping("/getProductWithCategoryDtoDetails")
+    public DataResult<List<ProductWithCategoryDto>> getProductWithCategoryDtoDetails() {
+        return productService.getProductsWithCategoryDetails();
+    }
+
+    @GetMapping("/getByNameAndCategory")
+    public DataResult<List<Product>> getByNameAndCategory(@RequestParam("productName") String productName, @RequestParam("categoryId") int category) {
+        return productService.getByNameAndCategory(productName, category);
     }
 
 }

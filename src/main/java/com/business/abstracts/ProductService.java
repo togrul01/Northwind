@@ -3,7 +3,7 @@ package com.business.abstracts;
 import com.core.DataResult;
 import com.core.Result;
 import com.entities.concretes.Product;
-import org.springframework.data.jpa.repository.Query;
+import com.entities.dtos.ProductWithCategoryDto;
 
 import java.util.List;
 
@@ -31,5 +31,8 @@ public interface ProductService {
     DataResult<List<Product>> getByProductNameEndsWith(String productName);
 
     DataResult<List<Product>> getByNameAndCategory(String productName, int categoryId);
+
+    DataResult<List<ProductWithCategoryDto>> getProductsWithCategoryDetails();
+
 
 }
