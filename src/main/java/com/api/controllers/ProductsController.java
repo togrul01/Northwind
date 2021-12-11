@@ -14,7 +14,6 @@ import java.util.List;
 @RequestMapping("/api/products")
 public class ProductsController {
 
-
     private final ProductService productService;
 
     @Autowired
@@ -85,6 +84,11 @@ public class ProductsController {
     @GetMapping("/getByNameAndCategory")
     public DataResult<List<Product>> getByNameAndCategory(@RequestParam("productName") String productName, @RequestParam("categoryId") int category) {
         return productService.getByNameAndCategory(productName, category);
+    }
+
+    @GetMapping("/getProductsWithCategoryDetails")
+    public DataResult<List<ProductWithCategoryDto>> getProductsWithCategoryDetails() {
+        return productService.getProductsWithCategoryDetails();
     }
 
 }

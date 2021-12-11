@@ -12,21 +12,21 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserManager implements UserService {
-    private UserDao userDao;
+    private final UserDao userDao;
 
     @Autowired
-    public UserManager(UserDao userDao) {
+    public UserManager(UserDao userDao)  {
         this.userDao = userDao;
     }
 
     @Override
     public Result add(User user) {
         userDao.save(user);
-        return new SuccessResult("User added :" + user);
+        return new SuccessResult("User added :" );
     }
 
     @Override
     public DataResult<User> findByEmail(String email) {
-        return new SuccessDataResult<User>(userDao.findByEmail(email),"User found");
+        return new SuccessDataResult<>(userDao.findByEmail(email), "User found");
     }
 }

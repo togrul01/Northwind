@@ -29,4 +29,5 @@ public interface ProductDao extends JpaRepository<Product, Integer> {
             "From Category c Inner Join c.products p")
     List<ProductWithCategoryDto> getProductsWithCategoryDetails();
     // select*from Category c inner join Product p on c.categoryId=p.categoryId
+
 }

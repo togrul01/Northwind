@@ -1,10 +1,7 @@
 package com.core.entities;
 
 import com.sun.istack.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -12,22 +9,23 @@ import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "users")
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class User {
     @Id
     @GeneratedValue(strategy =GenerationType.IDENTITY)
-    @Column(name="id")
+    @Column(name="id",unique = true,nullable = false)
     private int id;
 
-    @Column(name="email")
+    @Column(name="email",nullable = false)
     @Email
-    @NotBlank
+    @NotBlank // " tell
     @NotNull
     private String email;
 
-    @Column(name ="password")
+    @Column(name ="password",nullable = false)
     @NotBlank
     @NotNull
     private String password;

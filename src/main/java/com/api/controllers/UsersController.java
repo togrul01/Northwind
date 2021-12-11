@@ -17,27 +17,27 @@ import java.util.Map;
 @RestController
 @RequestMapping(value = "/api/users")
 public class UsersController {
-    private UserService userService;
+    private final UserService userService;
 
     @Autowired
-    public UsersController(UserService userService) {
+    public UsersController(UserService userService)  {
         this.userService = userService;
     }
 
     @PostMapping(value = "/add")
-    public ResponseEntity<?> add(@Valid  @RequestBody User user) {
-
+    public ResponseEntity<?> add(@Valid @RequestBody User user) {
         return ResponseEntity.ok(userService.add(user));
     }
 
     @ExceptionHandler({MethodArgumentNotValidException.class})
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorDataResult<Object> handleValidationException(MethodArgumentNotValidException exception) {
-        Map<String, String> validationErrors = new HashMap<String, String>();
+        Map<String, String> validationErrors = new HashMap<>(); //String
         for (FieldError fieldError : exception.getBindingResult().getFieldErrors()) {
             validationErrors.put(fieldError.getField(), fieldError.getDefaultMessage());
         }
-        return new ErrorDataResult<Object>(validationErrors, "Validation errors :");
+        return new ErrorDataResult< >(validationErrors, "Validation errors :");
+        //Object
     }
 
 }
