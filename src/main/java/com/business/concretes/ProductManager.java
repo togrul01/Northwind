@@ -1,18 +1,17 @@
 package com.business.concretes;
 
 import com.business.abstracts.ProductService;
-import com.core.DataResult;
-import com.core.Result;
-import com.core.SuccessDataResult;
-import com.core.SuccessResult;
+import com.core.*;
 import com.dataAccess.abstracts.ProductDao;
 import com.entities.concretes.Product;
 import com.entities.dtos.ProductWithCategoryDto;
+import org.hibernate.AssertionFailure;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 
 import java.util.List;
@@ -81,8 +80,13 @@ public class ProductManager implements ProductService {
 
     @Override
     public DataResult<List<Product>> getByProductNameStartsWith(String productName) {
-        return new SuccessDataResult<>
-                (productDao.getByProductNameStartsWith(productName), "Data Listed");
+        try {
+            return new SuccessDataResult<>
+                    (productDao.getByProductNameStartsWith(productName), "Data Listed");
+        }catch (Exception ex){
+            ex.printStackTrace();
+            return new ErrorDataResult<>("not gotit");
+        }
     }
 
     @Override

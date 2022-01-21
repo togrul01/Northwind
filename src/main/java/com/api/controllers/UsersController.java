@@ -3,6 +3,7 @@ package com.api.controllers;
 import com.business.abstracts.UserService;
 import com.core.ErrorDataResult;
 import com.core.entities.User;
+import com.entities.concretes.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +28,7 @@ public class UsersController {
     @PostMapping(value = "/add")
     public ResponseEntity<?> add(@Valid @RequestBody User user) {
         return ResponseEntity.ok(userService.add(user));
+
     }
 
     @ExceptionHandler({MethodArgumentNotValidException.class})
