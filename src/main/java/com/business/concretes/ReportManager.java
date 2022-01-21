@@ -16,8 +16,13 @@ import java.util.Map;
 
 @Service
 public class ReportManager {
+
+    private final ProductDao dao;
+
     @Autowired
-    private ProductDao dao;
+    public ReportManager(ProductDao dao) {
+        this.dao = dao;
+    }
 
     public String exportReport(String reportFormat) throws FileNotFoundException, JRException {
         String path = "C:\\Users\\Togrul\\Desktop\\Report";

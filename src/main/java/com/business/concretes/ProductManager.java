@@ -5,13 +5,11 @@ import com.core.*;
 import com.dataAccess.abstracts.ProductDao;
 import com.entities.concretes.Product;
 import com.entities.dtos.ProductWithCategoryDto;
-import org.hibernate.AssertionFailure;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.util.Assert;
 
 
 import java.util.List;
